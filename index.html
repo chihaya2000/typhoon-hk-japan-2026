@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年 香港〜日本 台風予測（7〜9月）｜時期スライダー</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-background-primary:#ffffff;--color-background-secondary:#f4f3ee;--color-background-tertiary:#eceae2;
+  --color-background-info:#e6f1fb;--color-background-danger:#fcebeb;--color-background-success:#e1f5ee;--color-background-warning:#faeeda;
+  --color-text-primary:#22221f;--color-text-secondary:#5f5e5a;--color-text-tertiary:#8a8980;
+  --color-text-info:#0c447c;--color-text-danger:#791f1f;--color-text-success:#085041;--color-text-warning:#633806;
+  --color-border-tertiary:rgba(40,40,38,.15);--color-border-secondary:rgba(40,40,38,.3);--color-border-primary:rgba(40,40,38,.4);
+  --color-border-info:#378add;
+  --font-sans:"Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --font-serif:Georgia,serif;--font-mono:ui-monospace,monospace;
+  --border-radius-md:8px;--border-radius-lg:12px;--border-radius-xl:16px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --color-background-primary:#262625;--color-background-secondary:#2f2f2d;--color-background-tertiary:#1d1d1b;
+  --color-background-info:#0c447c;--color-background-danger:#501313;--color-background-success:#04342c;--color-background-warning:#412402;
+  --color-text-primary:#f3f1ea;--color-text-secondary:#b6b5ab;--color-text-tertiary:#8a8980;
+  --color-text-info:#b5d4f4;--color-text-danger:#f7c1c1;--color-text-success:#9fe1cb;--color-text-warning:#fac775;
+  --color-border-tertiary:rgba(255,255,255,.15);--color-border-secondary:rgba(255,255,255,.3);--color-border-primary:rgba(255,255,255,.4);
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-tertiary);color:var(--color-text-primary);font-family:var(--font-sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:22px 18px 40px}
+h1{font-size:22px;font-weight:700;margin:0 0 4px}
+h2{font-size:18px;font-weight:500;margin:0}
+h3{font-size:16px;font-weight:500;margin:0 0 10px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.sub{color:var(--color-text-secondary);font-size:14px;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+.badge{font-size:12.5px;font-weight:500;padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.b-red{background:var(--color-background-danger);color:var(--color-text-danger)}
+.b-amber{background:var(--color-background-warning);color:var(--color-text-warning)}
+.b-blue{background:var(--color-background-info);color:var(--color-text-info)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:13px 14px}
+.kpi .lab{font-size:12.5px;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px}
+.kpi .val{font-size:23px;font-weight:700;margin-top:3px;line-height:1.2}
+.kpi .note{font-size:12px;color:var(--color-text-tertiary);margin-top:2px}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:18px}
+.ctrlrow{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.period{font-size:26px;font-weight:700;line-height:1.1}
+.periodsub{font-size:13px;color:var(--color-text-secondary)}
+.btn{font-family:inherit;font-size:13px;font-weight:500;color:var(--color-text-primary);background:transparent;border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:7px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.btn:hover{background:var(--color-background-secondary)}.btn:active{transform:scale(.98)}
+input[type=range]{width:100%;accent-color:#D85A30;height:22px}
+.steps{display:flex;gap:6px;margin:10px 0 4px}
+.wm-step{flex:1;height:6px;border-radius:999px;background:var(--color-border-tertiary);cursor:pointer;border:none;padding:0}
+.wm-step.on{background:#D85A30}
+.steplabels{display:flex;justify-content:space-between;font-size:11px;color:var(--color-text-tertiary);margin-bottom:6px}
+.maprow{position:relative;margin:6px 0 4px}
+.leg{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:11.5px;color:var(--color-text-secondary);margin:6px 2px 2px}
+.leg .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:-1px}
+.detail{margin-top:14px;border-top:.5px solid var(--color-border-tertiary);padding-top:14px}
+.headline{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.advice{font-size:14px;color:var(--color-text-secondary);margin:0 0 14px}
+.bars{display:grid;gap:9px}
+.barrow{display:grid;grid-template-columns:62px 1fr 78px;align-items:center;gap:10px;font-size:13px}
+.barrow .nm{color:var(--color-text-primary);font-weight:500}
+.track{height:9px;border-radius:999px;background:var(--color-background-secondary);overflow:hidden}
+.fill{height:100%;width:0;border-radius:999px;transition:width .45s ease,background .45s ease}
+.barrow .lv{font-size:12.5px;color:var(--color-text-secondary);text-align:right}
+.statline{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap}
+.statline .s{font-size:13px;color:var(--color-text-secondary)}
+.statline .s b{font-size:16px;color:var(--color-text-primary);font-weight:700;display:block}
+.mech{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:16px 18px;margin:22px 0}
+.mech p{margin:6px 0 0;font-size:14px;color:var(--color-text-secondary)}
+.section{margin-top:26px}
+.note{font-size:12.5px;color:var(--color-text-tertiary);margin-top:8px}
+.tips{display:grid;gap:10px;margin-top:6px}
+.tip{display:flex;gap:11px;align-items:flex-start;background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px}
+.tip i{font-size:20px;margin-top:1px}
+.tip .tt{font-size:14px}.tip .tt b{font-weight:700}
+.tip .td{font-size:13px;color:var(--color-text-secondary);margin-top:2px}
+.foot{margin-top:26px;font-size:11.5px;color:var(--color-text-tertiary);border-top:.5px solid var(--color-border-tertiary);padding-top:14px}
+.foot a{color:var(--color-text-info)}
+.wm-storm circle.eye{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{r:11;opacity:.18}50%{r:15;opacity:.30}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h2 class="sr-only">2026年7〜9月、香港から日本にかけての台風予測を時期スライダーで切り替えて見るインフォグラフィック。スーパーエルニーニョの影響で9月の東日本が最も警戒されます。</h2>
+
+<h1>2026年 香港〜日本 台風予測</h1>
+<p class="sub">7〜9月・旅行プラン向け／時期スライダーで時期ごとのリスクを切り替え</p>
+<div class="badges">
+  <span class="badge b-red"><i class="ti ti-flame" aria-hidden="true"></i>スーパーエルニーニョ発生見込み</span>
+  <span class="badge b-amber"><i class="ti ti-arrows-diagonal" aria-hidden="true"></i>正のインド洋ダイポール</span>
+  <span class="badge b-blue"><i class="ti ti-windsock" aria-hidden="true"></i>発生数は平年より多い傾向</span>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="lab"><i class="ti ti-cyclone" aria-hidden="true"></i>年間発生数</div><div class="val">28個</div><div class="note">平年25個・やや多い（WNI）</div></div>
+  <div class="kpi"><div class="lab"><i class="ti ti-plane-inflight" aria-hidden="true"></i>日本へ接近</div><div class="val">約14個</div><div class="note">平年約12個（WNI）</div></div>
+  <div class="kpi"><div class="lab"><i class="ti ti-building-lighthouse" aria-hidden="true"></i>香港へ接近</div><div class="val">4〜7個</div><div class="note">平年約6個（香港天文台）</div></div>
+  <div class="kpi"><div class="lab"><i class="ti ti-alert-triangle" aria-hidden="true"></i>最大の警戒</div><div class="val">9月・東日本</div><div class="note">南から強い台風が接近</div></div>
+</div>
+
+<div class="card">
+  <div class="ctrlrow">
+    <div>
+      <div class="period" id="wm-period">7月上旬</div>
+      <div class="periodsub" id="wm-range-sub">7/1–7/10</div>
+    </div>
+    <button class="btn" id="wm-play"><i class="ti ti-player-play" aria-hidden="true"></i>再生</button>
+  </div>
+  <input type="range" id="wm-slider" min="0" max="5" step="1" value="0" aria-label="時期スライダー">
+  <div class="steps" id="wm-steps"></div>
+  <div class="steplabels"><span>7月</span><span>8月</span><span>9月</span></div>
+
+  <div class="maprow" id="wm-map"></div>
+  <div class="leg" aria-hidden="true">
+    <span>リスク：</span>
+    <span><span class="dot" style="background:#1D9E75"></span>低い</span>
+    <span><span class="dot" style="background:#97C459"></span>やや低い</span>
+    <span><span class="dot" style="background:#EF9F27"></span>中程度</span>
+    <span><span class="dot" style="background:#D85A30"></span>高い</span>
+    <span><span class="dot" style="background:#E24B4A"></span>非常に高い</span>
+  </div>
+
+  <div class="detail">
+    <p class="headline" id="wm-headline"></p>
+    <p class="advice" id="wm-advice"></p>
+    <div class="bars">
+      <div class="barrow"><span class="nm">香港</span><div class="track"><div class="fill" id="bar-hk"></div></div><span class="lv" id="lab-hk"></span></div>
+      <div class="barrow"><span class="nm">沖縄</span><div class="track"><div class="fill" id="bar-oki"></div></div><span class="lv" id="lab-oki"></span></div>
+      <div class="barrow"><span class="nm">西日本</span><div class="track"><div class="fill" id="bar-west"></div></div><span class="lv" id="lab-west"></span></div>
+      <div class="barrow"><span class="nm">東日本</span><div class="track"><div class="fill" id="bar-east"></div></div><span class="lv" id="lab-east"></span></div>
+    </div>
+    <div class="statline">
+      <div class="s">この時期の発生（目安）<b id="wm-form"></b></div>
+      <div class="s">台風の強さの傾向<b id="wm-int"></b></div>
+    </div>
+  </div>
+</div>
+
+<div class="mech">
+  <h3><i class="ti ti-route" aria-hidden="true" style="font-size:18px;vertical-align:-2px;margin-right:6px"></i>なぜ2026年は「日本寄り」なのか</h3>
+  <p>エルニーニョと正のIOD（インド洋ダイポール）により、台風の発生域が平年より南東へシフト。太平洋高気圧の縁に沿って、日本の南から東日本太平洋側へ向かう経路（recurve）が増えます。9月はスーパーエルニーニョが最盛となり、暖かい海上を長く進む強い台風が東日本へ接近しやすくなります。一方で香港・華南は直撃が減る傾向で、記録的だった2025年の14個から、2026年は平年並みの4〜7個の見込みです。</p>
+</div>
+
+<div class="section">
+  <h3>過去10年の日本への台風上陸数（2016〜2025）</h3>
+  <div id="wm-hist"></div>
+  <div class="leg">
+    <span><span class="dot" style="background:#E24B4A"></span>エルニーニョ年</span>
+    <span><span class="dot" style="background:#378ADD"></span>ラニーニャ年</span>
+    <span><span class="dot" style="background:#888780"></span>中立年</span>
+  </div>
+  <p class="note">上陸数とENSO（エルニーニョ／ラニーニャ）の相関は単純ではありません。エルニーニョ年でも上陸は2019年=5個、2023年=1個と幅があり、エルニーニョの影響は「上陸」よりも本州への<b>接近の多さ・経路の東寄り化・勢力の強さ</b>に表れやすいのが特徴です。北西太平洋の年間発生数は10年平均で約25個（最少は2023年の17個）。</p>
+</div>
+
+<div class="section">
+  <h3>旅行プランの要点</h3>
+  <div class="tips">
+    <div class="tip"><i class="ti ti-mood-smile" style="color:#1D9E75" aria-hidden="true"></i><div><div class="tt"><b>比較的穏やかなのは7月上旬</b></div><div class="td">シーズンの入口で発生はまだ少なめ。ただし沖縄・南西諸島の南海上は早めに動き出すので、沖縄方面は油断せず。</div></div></div>
+    <div class="tip"><i class="ti ti-alert-triangle" style="color:#E24B4A" aria-hidden="true"></i><div><div class="tt"><b>最も荒れやすいのは8月後半〜9月の東日本</b></div><div class="td">関東・東京方面は強い台風が南から接近しやすい時期。旅行日程は出発3〜5日前から最新の進路情報を必ず確認。</div></div></div>
+    <div class="tip"><i class="ti ti-plane" style="color:#EF9F27" aria-hidden="true"></i><div><div class="tt"><b>香港発着便は台湾・沖縄付近に注意</b></div><div class="td">香港自体の直撃は平年並みでも、航空路上の台湾・沖縄に台風があると遅延・欠航に。お盆（8月中旬）は混雑と重なり影響大。</div></div></div>
+    <div class="tip"><i class="ti ti-umbrella" style="color:#378ADD" aria-hidden="true"></i><div><div class="tt"><b>予備日程と振替条件を用意</b></div><div class="td">9月の東日本着・8月の移動は、欠航時の振替や払い戻し条件を事前に確認。旅行保険の運航遅延補償も検討を。</div></div></div>
+  </div>
+</div>
+
+<div class="foot">
+  出典：ウェザーニューズ「2026年台風傾向」(2026/6/2)・「2026 Typhoon Season Outlook」(2026/6/10)／香港天文台 年間展望 2026 (2026/3)／Tropical Storm Risk, UCL／気象庁 台風統計（上陸数・発生数）。<br>
+  注意：季節予報は確率的な見通しであり、個々の台風の有無・進路・時期を保証するものではありません。春の予測バリア等により不確実性があります。最新情報は気象庁・香港天文台等の公式発表をご確認ください。
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const PERIODS=[
+ {key:"7月上旬",sub:"7/1–7/10",form:"約2個",intensity:2,risk:{hk:2,oki:3,west:2,east:2},
+  track:[[135,13],[130,17],[126,21],[125,26],[128,30],[131,33]],
+  headline:"シーズンの入り口 ― 南西諸島に最初の山",
+  advice:"台風シーズンが本格化。発生はまだ多くないが、フィリピン東海上で生まれ沖縄・南西諸島へ北上しやすい。香港便・沖縄便は南西諸島付近の進路に注意。本州への直接接近はまだ少なめ。"},
+ {key:"7月下旬",sub:"7/11–7/31",form:"約2個",intensity:2,risk:{hk:3,oki:4,west:3,east:3},
+  track:[[137,14],[131,18],[127,23],[127,28],[131,32],[135,35]],
+  headline:"発生ペース加速 ― 沖縄〜西日本へ",
+  advice:"太平洋高気圧の縁を回り、沖縄から西日本へ進むパターンが増加。エルニーニョ年は本州への接近が平年より多い傾向。香港〜日本の空路（台湾・沖縄付近）が影響を受けやすい時期。"},
+ {key:"8月上旬",sub:"8/1–8/15",form:"約3個",intensity:3,risk:{hk:3,oki:4,west:4,east:4},
+  track:[[139,15],[133,19],[129,24],[129,29],[133,33],[137,36]],
+  headline:"最盛期入り ― 発生数ピークへ",
+  advice:"月5〜6個ペースの発生で進路の幅も拡大。西日本・東日本のどちらにも接近しうる。お盆の帰省・旅行と重なり、フライト遅延・欠航リスクが高い。代替日程や運航状況の確認を。"},
+ {key:"8月下旬",sub:"8/16–8/31",form:"約3個",intensity:4,risk:{hk:3,oki:3,west:4,east:5},
+  track:[[143,15],[138,19],[134,24],[134,29],[137,33],[140,35]],
+  headline:"東日本でリスク上昇 ― 強い台風も",
+  advice:"エルニーニョの影響で進路が北東へ寄り、関東・東日本太平洋側のリスクが特に上昇。強い勢力のまま接近する台風も。東京方面の旅行は最新の進路情報を要確認。"},
+ {key:"9月上旬",sub:"9/1–9/15",form:"約3個",intensity:5,risk:{hk:2,oki:3,west:4,east:5},
+  track:[[147,13],[143,17],[140,22],[139,27],[140,32],[140,35]],
+  headline:"スーパーエルニーニョ最盛 ― 南から強い台風",
+  advice:"暖かい海上を長く進み、勢力の強い台風が日本の南から東日本へ接近しやすい。9月は東京・関東方面が最も警戒すべき時期。香港側は接近が減る傾向だが、油断は禁物。"},
+ {key:"9月下旬",sub:"9/16–9/30",form:"約2個",intensity:4,risk:{hk:2,oki:2,west:3,east:5},
+  track:[[150,14],[147,19],[144,25],[143,30],[142,34],[141,36]],
+  headline:"経路は東へシフト ― 本州南〜南東で強い接近",
+  advice:"発生・経路がさらに南東へシフト。沖縄の接近は平年以下になる一方、本州の南〜南東海上を強い台風が通過しやすい。東日本太平洋側・空路に影響。香港はシーズン終盤へ。"}
+];
+const CITY={hk:[114.17,22.30],oki:[127.68,26.21],west:[135.50,34.69],east:[139.77,35.68]};
+const LBL={hk:"香港",oki:"沖縄",west:"西日本",east:"東日本"};
+const CTX=[{p:[121.0,23.7],t:"台湾"},{p:[133.5,15.5],t:"発生域"},{p:[144.8,13.4],t:"グアム"}];
+const RM=[null,{l:"低い",c:"#1D9E75"},{l:"やや低い",c:"#97C459"},{l:"中程度",c:"#EF9F27"},{l:"高い",c:"#D85A30"},{l:"非常に高い",c:"#E24B4A"}];
+const INTEN=[null,"静穏","並","やや強い","強い","非常に強い・大型"];
+
+const W=700,H=380;
+let proj,trackPath,storm,cityC={},slider,cur=0,playing=false,timer=null;
+
+function buildMap(){
+  const svg=d3.select("#wm-map").append("svg").attr("viewBox","0 0 "+W+" "+H).attr("width","100%")
+    .attr("role","img").attr("aria-label","香港から日本にかけての台風リスク地図");
+  svg.append("defs").html('<marker id="wm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D85A30"></path></marker>');
+  proj=d3.geoMercator();
+  const bbox={type:"MultiPoint",coordinates:[[108,8],[152,8],[152,47],[108,47]]};
+  proj.fitExtent([[8,8],[W-8,H-8]],bbox);
+  const gLand=svg.append("g"),gOv=svg.append("g");
+  const draw=()=>{buildOverlay(gOv);update(0);};
+  d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(world=>{
+    const feats=topojson.feature(world,world.objects.countries).features;
+    gLand.selectAll("path").data(feats).join("path").attr("d",d3.geoPath(proj))
+      .attr("fill","var(--color-background-secondary)").attr("stroke","var(--color-border-secondary)").attr("stroke-width",.5);
+    draw();
+  }).catch(()=>{draw();});
+}
+function buildOverlay(gOv){
+  gOv.selectAll("text.ctx").data(CTX).join("text").attr("class","ctx")
+    .attr("x",d=>proj(d.p)[0]).attr("y",d=>proj(d.p)[1]).text(d=>d.t)
+    .attr("font-size",11).attr("fill","var(--color-text-tertiary)").attr("text-anchor","middle");
+  trackPath=gOv.append("path").attr("fill","none").attr("stroke-width",3).attr("stroke-linecap","round")
+    .attr("stroke-dasharray","2 7").attr("marker-end","url(#wm-arrow)");
+  for(const k of ["hk","oki","west","east"]){
+    const xy=proj(CITY[k]);
+    const g=gOv.append("g").attr("transform","translate("+xy[0]+","+xy[1]+")");
+    cityC[k]=g.append("circle").attr("r",6).attr("fill-opacity",.85);
+    g.append("circle").attr("r",2.6).attr("fill","var(--color-background-primary)");
+    g.append("text").attr("y",-12).attr("text-anchor","middle").attr("font-size",12)
+      .attr("font-weight",500).attr("fill","var(--color-text-primary)").text(LBL[k]);
+  }
+  storm=gOv.append("g").attr("class","wm-storm");
+  storm.append("circle").attr("class","eye").attr("r",11).attr("fill","#E24B4A").attr("fill-opacity",.18);
+  storm.append("circle").attr("r",6).attr("fill","#E24B4A").attr("fill-opacity",.4);
+  storm.append("circle").attr("r",2.6).attr("fill","#E24B4A");
+}
+function setBar(k,v){const m=RM[v];document.getElementById("bar-"+k).style.width=(v/5*100)+"%";document.getElementById("bar-"+k).style.background=m.c;document.getElementById("lab-"+k).textContent=m.l;}
+function update(i){
+  cur=i;const P=PERIODS[i];
+  document.getElementById("wm-period").textContent=P.key;
+  document.getElementById("wm-range-sub").textContent=P.sub;
+  document.getElementById("wm-headline").textContent=P.headline;
+  document.getElementById("wm-advice").textContent=P.advice;
+  document.getElementById("wm-form").textContent=P.form;
+  document.getElementById("wm-int").textContent=INTEN[P.intensity];
+  setBar("hk",P.risk.hk);setBar("oki",P.risk.oki);setBar("west",P.risk.west);setBar("east",P.risk.east);
+  if(proj&&trackPath){
+    const line=d3.line().curve(d3.curveCardinal.tension(.6));
+    const pts=P.track.map(c=>proj(c));
+    trackPath.attr("d",line(pts)).attr("stroke",RM[Math.max(2,P.intensity)].c);
+    const head=pts[pts.length-1];
+    storm.transition().duration(600).attr("transform","translate("+head[0]+","+head[1]+")");
+    for(const k of ["hk","oki","west","east"]){const v=P.risk[k];cityC[k].transition().duration(400).attr("r",5+v*2.2).attr("fill",RM[v].c);}
+  }
+  document.querySelectorAll(".wm-step").forEach((el,idx)=>el.classList.toggle("on",idx===i));
+  if(slider)slider.value=i;
+}
+function buildHist(){
+  const HY=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  const HL=[6,4,5,5,0,3,3,1,2,3];
+  const HE=["中立","ラニーニャ","中立","エルニーニョ","ラニーニャ","ラニーニャ","ラニーニャ","エルニーニョ","中立","中立"];
+  const EC={"エルニーニョ":"#E24B4A","ラニーニャ":"#378ADD","中立":"#888780"};
+  const bw=700,bh=230,mL=26,mR=10,mT=22,mB=30,iw=bw-mL-mR,ih=bh-mT-mB;
+  const x=d3.scaleBand().domain(HY).range([mL,mL+iw]).padding(.32);
+  const y=d3.scaleLinear().domain([0,6]).range([mT+ih,mT]);
+  const svg=d3.select("#wm-hist").append("svg").attr("viewBox","0 0 "+bw+" "+bh).attr("width","100%")
+    .attr("role","img").attr("aria-label","過去10年（2016〜2025年）の日本への台風上陸数の棒グラフ。平年は3.0個。");
+  svg.append("line").attr("x1",mL).attr("x2",mL+iw).attr("y1",y(3)).attr("y2",y(3))
+    .attr("stroke","var(--color-text-tertiary)").attr("stroke-dasharray","4 4");
+  svg.append("text").attr("x",mL+iw).attr("y",y(3)-4).attr("text-anchor","end").attr("font-size",10)
+    .attr("fill","var(--color-text-tertiary)").text("平年 3.0");
+  HY.forEach((yr,idx)=>{
+    const xv=x(yr),h=y(0)-y(HL[idx]);
+    if(HL[idx]>0)svg.append("rect").attr("x",xv).attr("y",y(HL[idx])).attr("width",x.bandwidth()).attr("height",h).attr("rx",2).attr("fill",EC[HE[idx]]);
+    svg.append("text").attr("x",xv+x.bandwidth()/2).attr("y",y(HL[idx])-4).attr("text-anchor","middle").attr("font-size",10).attr("fill","var(--color-text-secondary)").text(HL[idx]);
+    svg.append("text").attr("x",xv+x.bandwidth()/2).attr("y",bh-12).attr("text-anchor","middle").attr("font-size",10).attr("fill","var(--color-text-tertiary)").text("’"+String(yr).slice(2));
+  });
+}
+function initSteps(){
+  const c=document.getElementById("wm-steps");
+  PERIODS.forEach((p,idx)=>{const b=document.createElement("button");b.className="wm-step";b.setAttribute("aria-label",p.key);b.onclick=()=>{stop();update(idx);};c.appendChild(b);});
+}
+function stop(){playing=false;clearInterval(timer);document.getElementById("wm-play").innerHTML='<i class="ti ti-player-play" aria-hidden="true"></i>再生';}
+(function init(){
+  slider=document.getElementById("wm-slider");
+  slider.addEventListener("input",()=>{stop();update(+slider.value);});
+  document.getElementById("wm-play").addEventListener("click",()=>{
+    if(playing){stop();return;}
+    playing=true;document.getElementById("wm-play").innerHTML='<i class="ti ti-player-pause" aria-hidden="true"></i>停止';
+    timer=setInterval(()=>{update((cur+1)%PERIODS.length);},1700);
+  });
+  initSteps();buildMap();buildHist();
+})();
+</script>
+</body>
+</html>
+                                    
